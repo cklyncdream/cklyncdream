@@ -15,11 +15,11 @@ body {
 
 .container {
   width: 100%;
-  max-width: 900px;
+  max-width: 1100px;
   background: #1f1f1f;
   border-radius: 12px;
   padding: 25px 30px 40px 30px;
-  box-shadow: 0 0 20px rgba(0, 255, 128, 0.2);
+  box-shadow: 0 0 20px rgba(0, 255, 128, 0.3);
 }
 
 h1 {
@@ -62,6 +62,23 @@ h1 {
   letter-spacing: 1.2px;
 }
 
+/* İçerik: Liste ve detay yan yana */
+
+.content {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.list-section {
+  flex: 1 1 450px;
+  max-height: 600px;
+  overflow-y: auto;
+  border-radius: 12px;
+  box-shadow: inset 0 0 12px #00ff90;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -75,6 +92,9 @@ thead tr {
   font-size: 16px;
   border-radius: 8px 8px 0 0;
   box-shadow: 0 0 10px #00ff90cc;
+  position: sticky;
+  top: 0;
+  z-index: 2;
 }
 
 thead tr th {
@@ -84,10 +104,11 @@ thead tr th {
 tbody tr {
   border-bottom: 1px solid #222;
   transition: background-color 0.3s ease;
+  cursor: pointer;
 }
 
-tbody tr:hover {
-  background-color: #00330044;
+tbody tr:hover, tbody tr.selected {
+  background-color: #00330088;
 }
 
 tbody tr td {
@@ -108,23 +129,54 @@ tbody tr td {
   text-shadow: 0 0 8px #ff3b3b;
 }
 
-@media (max-width: 600px) {
-  body {
-    padding: 20px 10px;
+.detail-section {
+  flex: 1 1 600px;
+  background: #292929;
+  border-radius: 12px;
+  padding: 20px 25px;
+  box-shadow: 0 0 18px #00ff90cc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  user-select: none;
+  min-height: 520px;
+}
+
+.detail-section h2 {
+  color: #00ff90;
+  text-shadow: 0 0 8px #00ff90;
+  margin-bottom: 15px;
+  text-align: center;
+  user-select: text;
+}
+
+#priceChart {
+  width: 100% !important;
+  max-width: 100%;
+  height: 300px !important;
+  background: #1f1f1f;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.info-text {
+  color: #c0ffc0;
+  font-size: 15px;
+  line-height: 1.4;
+  text-align: center;
+  white-space: pre-line;
+  max-width: 95%;
+  user-select: text;
+}
+
+/* Responsive */
+
+@media (max-width: 900px) {
+  .content {
+    flex-direction: column;
   }
-  .container {
-    padding: 20px 15px 30px 15px;
-  }
-  h1 {
-    font-size: 24px;
-  }
-  #searchBox {
-    font-size: 16px;
-    padding: 12px 15px;
-  }
-  thead tr th,
-  tbody tr td {
-    font-size: 13px;
-    padding: 10px 6px;
+  .list-section, .detail-section {
+    flex: 1 1 100%;
+    max-height: none;
   }
 }
