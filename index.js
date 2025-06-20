@@ -1,21 +1,75 @@
-// Veri kümesi - Para birimleri, Bitcoin, hisse senetleri
+// Veri kümesi - Para birimleri, Bitcoin, hisse senetleri ve daha fazlası (65+ öğe)
 const data = [
-  { symbol: "BTC", name: "Bitcoin", price: 410000, change: 0, history: [] },
-  { symbol: "ETH", name: "Ethereum", price: 28000, change: 0, history: [] },
-  { symbol: "USD", name: "ABD Doları", price: 27.50, change: 0, history: [] },
-  { symbol: "EUR", name: "Euro", price: 29.20, change: 0, history: [] },
-  { symbol: "TRY", name: "Türk Lirası", price: 1, change: 0, history: [] },
-  { symbol: "GBP", name: "İngiliz Sterlini", price: 33.40, change: 0, history: [] },
-  { symbol: "XAU", name: "Altın (gram)", price: 1900, change: 0, history: [] },
-  { symbol: "AAPL", name: "Apple Inc.", price: 168, change: 0, history: [] },
-  { symbol: "TSLA", name: "Tesla Inc.", price: 720, change: 0, history: [] },
-  { symbol: "MSFT", name: "Microsoft Corp.", price: 330, change: 0, history: [] },
-  { symbol: "GOOGL", name: "Alphabet Inc.", price: 2800, change: 0, history: [] },
-  { symbol: "AMZN", name: "Amazon.com Inc.", price: 3500, change: 0, history: [] },
-  { symbol: "DOGE", name: "Dogecoin", price: 1.15, change: 0, history: [] },
-  { symbol: "XRP", name: "Ripple", price: 5.25, change: 0, history: [] },
-  { symbol: "USDTRY", name: "Dolar / Türk Lirası", price: 27.50, change: 0, history: [] },
-  { symbol: "EURUSD", name: "Euro / ABD Doları", price: 1.06, change: 0, history: [] },
+  { symbol: "BTC", name: "Bitcoin", price: 410000, change: 0 },
+  { symbol: "ETH", name: "Ethereum", price: 28000, change: 0 },
+  { symbol: "USD", name: "ABD Doları", price: 27.50, change: 0 },
+  { symbol: "EUR", name: "Euro", price: 29.20, change: 0 },
+  { symbol: "TRY", name: "Türk Lirası", price: 1, change: 0 },
+  { symbol: "GBP", name: "İngiliz Sterlini", price: 33.40, change: 0 },
+  { symbol: "XAU", name: "Altın (gram)", price: 1900, change: 0 },
+  { symbol: "AAPL", name: "Apple Inc.", price: 168, change: 0 },
+  { symbol: "TSLA", name: "Tesla Inc.", price: 720, change: 0 },
+  { symbol: "MSFT", name: "Microsoft Corp.", price: 330, change: 0 },
+  { symbol: "GOOGL", name: "Alphabet Inc.", price: 2800, change: 0 },
+  { symbol: "AMZN", name: "Amazon.com Inc.", price: 3500, change: 0 },
+  { symbol: "DOGE", name: "Dogecoin", price: 1.15, change: 0 },
+  { symbol: "XRP", name: "Ripple", price: 5.25, change: 0 },
+  { symbol: "USDTRY", name: "Dolar / Türk Lirası", price: 27.50, change: 0 },
+  { symbol: "EURUSD", name: "Euro / ABD Doları", price: 1.06, change: 0 },
+
+  // Yeni eklenenler:
+
+  { symbol: "BNB", name: "Binance Coin", price: 4500, change: 0 },
+  { symbol: "ADA", name: "Cardano", price: 8.50, change: 0 },
+  { symbol: "SOL", name: "Solana", price: 450, change: 0 },
+  { symbol: "DOGE", name: "Dogecoin", price: 1.15, change: 0 },
+  { symbol: "LTC", name: "Litecoin", price: 1100, change: 0 },
+  { symbol: "SHIB", name: "Shiba Inu", price: 0.000012, change: 0 },
+  { symbol: "AVAX", name: "Avalanche", price: 220, change: 0 },
+  { symbol: "MATIC", name: "Polygon", price: 28, change: 0 },
+  { symbol: "DOT", name: "Polkadot", price: 150, change: 0 },
+  { symbol: "UNI", name: "Uniswap", price: 100, change: 0 },
+  { symbol: "XLM", name: "Stellar", price: 3.5, change: 0 },
+  { symbol: "LINK", name: "Chainlink", price: 125, change: 0 },
+  { symbol: "ALGO", name: "Algorand", price: 35, change: 0 },
+  { symbol: "VET", name: "VeChain", price: 2.6, change: 0 },
+  { symbol: "FIL", name: "Filecoin", price: 400, change: 0 },
+  { symbol: "ICP", name: "Internet Computer", price: 350, change: 0 },
+  { symbol: "AAVE", name: "Aave", price: 1800, change: 0 },
+  { symbol: "FTT", name: "FTX Token", price: 430, change: 0 },
+  { symbol: "THETA", name: "Theta", price: 60, change: 0 },
+  { symbol: "XMR", name: "Monero", price: 2900, change: 0 },
+  { symbol: "EOS", name: "EOS", price: 90, change: 0 },
+  { symbol: "TRX", name: "Tron", price: 1.85, change: 0 },
+  { symbol: "NEO", name: "NEO", price: 320, change: 0 },
+  { symbol: "KRW", name: "Güney Kore Wonu", price: 0.022, change: 0 },
+  { symbol: "JPY", name: "Japon Yeni", price: 0.20, change: 0 },
+  { symbol: "CHF", name: "İsviçre Frangı", price: 30.5, change: 0 },
+  { symbol: "CAD", name: "Kanada Doları", price: 21.4, change: 0 },
+  { symbol: "AUD", name: "Avustralya Doları", price: 18.5, change: 0 },
+  { symbol: "NZD", name: "Yeni Zelanda Doları", price: 16.7, change: 0 },
+  { symbol: "CNY", name: "Çin Yuanı", price: 4.1, change: 0 },
+  { symbol: "SGD", name: "Singapur Doları", price: 20, change: 0 },
+  { symbol: "HKD", name: "Hong Kong Doları", price: 3.5, change: 0 },
+  { symbol: "ZAR", name: "Güney Afrika Randı", price: 1.85, change: 0 },
+  { symbol: "BRL", name: "Brezilya Reali", price: 5.5, change: 0 },
+  { symbol: "MXN", name: "Meksika Pesosu", price: 1.5, change: 0 },
+  { symbol: "INR", name: "Hindistan Rupisi", price: 0.35, change: 0 },
+  { symbol: "RUB", name: "Rus Rublesi", price: 0.37, change: 0 },
+  { symbol: "SAR", name: "Suudi Riyali", price: 7.3, change: 0 },
+  { symbol: "AED", name: "BAE Dirhemi", price: 7.5, change: 0 },
+  { symbol: "TRYX", name: "Türk Lirası (Alternatif)", price: 1, change: 0 },
+  { symbol: "INTC", name: "Intel Corp.", price: 55, change: 0 },
+  { symbol: "CSCO", name: "Cisco Systems", price: 55, change: 0 },
+  { symbol: "NVDA", name: "NVIDIA Corp.", price: 700, change: 0 },
+  { symbol: "NFLX", name: "Netflix Inc.", price: 550, change: 0 },
+  { symbol: "PYPL", name: "PayPal Holdings", price: 250, change: 0 },
+  { symbol: "BABA", name: "Alibaba Group", price: 140, change: 0 },
+  { symbol: "DIS", name: "Walt Disney Co.", price: 150, change: 0 },
+  { symbol: "ADBE", name: "Adobe Inc.", price: 530, change: 0 },
+  { symbol: "CRM", name: "Salesforce.com", price: 240, change: 0 },
+  { symbol: "UBER", name: "Uber Technologies", price: 50, change: 0 },
+  { symbol: "TWTR", name: "Twitter, Inc.", price: 45, change: 0 },
 ];
 
 // İstanbul saatine göre güncel saat göstergesi
@@ -34,9 +88,10 @@ function updateTime() {
   document.getElementById("time").innerText = "Güncel Saat (İstanbul): " + now;
 }
 
-// Rastgele fiyat değişimi simülasyonu ve history güncelleme
+// Rastgele fiyat değişimi simülasyonu
 function simulatePriceChange() {
   data.forEach((item) => {
+    // Fiyatı değiştir, -%0.5 ile +%0.5 arasında rastgele
     const maxChangePercent = 0.005;
     const randomFactor = (Math.random() * 2 - 1) * maxChangePercent;
     const oldPrice = item.price;
@@ -44,12 +99,6 @@ function simulatePriceChange() {
 
     item.change = newPrice - oldPrice;
     item.price = parseFloat(newPrice.toFixed(4));
-
-    // Fiyat geçmişini 30 kayıtla sınırla
-    item.history.push(item.price);
-    if (item.history.length > 30) {
-      item.history.shift();
-    }
   });
 }
 
@@ -66,13 +115,6 @@ function updateTable(filter = "") {
       item.name.toLowerCase().includes(filter)
     ) {
       const tr = document.createElement("tr");
-      tr.setAttribute("tabindex", 0);
-      tr.setAttribute("role", "button");
-      tr.classList.toggle("selected", item.symbol === selectedAssetSymbol);
-      tr.addEventListener("click", () => selectAsset(item.symbol));
-      tr.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" || e.key === " ") selectAsset(item.symbol);
-      });
 
       const priceCell = document.createElement("td");
       priceCell.textContent =
@@ -94,107 +136,20 @@ function updateTable(filter = "") {
   });
 }
 
-// Seçilen varlık ve grafik
-let selectedAssetSymbol = data[0].symbol;
-
-// Chart.js grafiği
-const ctx = document.getElementById("priceChart").getContext("2d");
-const priceChart = new Chart(ctx, {
-  type: "line",
-  data: {
-    labels: [], // Zaman etiketleri, örn: saniye sayısı
-    datasets: [{
-      label: "",
-      data: [],
-      borderColor: "#00ff90",
-      backgroundColor: "rgba(0, 255, 144, 0.2)",
-      fill: true,
-      tension: 0.25,
-      pointRadius: 3,
-      pointHoverRadius: 6,
-      borderWidth: 2,
-      hoverBorderWidth: 3,
-    }]
-  },
-  options: {
-    animation: false,
-    responsive: true,
-    maintainAspectRatio: false,
-    scales: {
-      y: {
-        beginAtZero: false,
-        grid: { color: '#444' },
-        ticks: { color: '#a0a0c8' },
-      },
-      x: {
-        grid: { display: false },
-        ticks: { color: '#a0a0c8' },
-      }
-    },
-    plugins: {
-      legend: {
-        labels: { color: '#00ff90', font: { weight: 'bold', size: 14 } }
-      },
-      tooltip: {
-        mode: 'index',
-        intersect: false,
-        callbacks: {
-          label: ctx => ctx.parsed.y.toFixed(4)
-        }
-      },
-    },
-  }
+// Arama kutusu dinleme
+const searchBox = document.getElementById("searchBox");
+searchBox.addEventListener("input", () => {
+  updateTable(searchBox.value);
 });
 
-function updateChartAndInfo(symbol) {
-  const asset = data.find(a => a.symbol === symbol);
-  if (!asset) return;
-
-  // Zaman etiketleri olarak basit sayılar (son 30 saniye)
-  const labels = asset.history.map((_, i) => `-${asset.history.length - i}s`);
-
-  priceChart.data.labels = labels;
-  priceChart.data.datasets[0].label = `${asset.name} (${asset.symbol})`;
-  priceChart.data.datasets[0].data = asset.history;
-  
-  // Renk ayarı (eğer fiyat arttıysa yeşil, düştüyse kırmızı)
-  const lastChange = asset.change;
-  priceChart.data.datasets[0].borderColor = lastChange >= 0 ? '#00ff90' : '#ff3b3b';
-  priceChart.data.datasets[0].backgroundColor = lastChange >= 0 ? 'rgba(0,255,144,0.2)' : 'rgba(255,59,59,0.2)';
-
-  priceChart.update();
-
-  const changeSign = asset.change >= 0 ? "+" : "";
-  const infoText = `
-Güncel Fiyat: <strong>${asset.price}</strong>
-Değişim: <strong>${changeSign}${asset.change.toFixed(4)}</strong>
-
-Son 30 saniyenin fiyat geçmişi grafikte gösterilmektedir.
-  `;
-
-  document.getElementById("detailTitle").querySelector("span").textContent = `${asset.name} (${asset.symbol})`;
-  document.getElementById("info-text").innerHTML = infoText;
-}
-
-// Seçim fonksiyonu
-function selectAsset(symbol) {
-  selectedAssetSymbol = symbol;
-  updateTable(document.getElementById("searchBox").value);
-  updateChartAndInfo(symbol);
-}
-
-// Arama input event
-document.getElementById("searchBox").addEventListener("input", (e) => {
-  updateTable(e.target.value);
-});
-
-// Döngü ve güncellemeler
-function mainLoop() {
-  updateTime();
+// Her saniye fiyatları simüle et ve tabloyu güncelle
+setInterval(() => {
   simulatePriceChange();
-  updateTable(document.getElementById("searchBox").value);
-  updateChartAndInfo(selectedAssetSymbol);
-}
+  updateTable(searchBox.value);
+  updateTime();
+}, 1000);
 
-selectAsset(selectedAssetSymbol);
-setInterval(mainLoop, 1000);
+// İlk yükleme
+simulatePriceChange();
+updateTable();
+updateTime();
