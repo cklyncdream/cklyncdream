@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Canlı Para Birimleri ve Hisse Arama Motoru</title>
 <link rel="stylesheet" href="index.css" />
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
@@ -20,17 +21,27 @@
 
   <div id="time"></div>
 
-  <table id="dataTable">
-    <thead>
-      <tr>
-        <th>Simge</th>
-        <th>İsim</th>
-        <th>Fiyat (₺ veya USD)</th>
-        <th>Değişim</th>
-      </tr>
-    </thead>
-    <tbody id="tableBody"></tbody>
-  </table>
+  <div class="content">
+    <div class="list-section">
+      <table id="dataTable" aria-label="Para birimleri ve hisseler listesi">
+        <thead>
+          <tr>
+            <th>Simge</th>
+            <th>İsim</th>
+            <th>Fiyat (₺ veya USD)</th>
+            <th>Değişim</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody" tabindex="0"></tbody>
+      </table>
+    </div>
+
+    <div class="detail-section" aria-live="polite">
+      <h2 id="detailTitle">Seçilen varlık: <span>Hiçbir şey seçilmedi</span></h2>
+      <canvas id="priceChart" aria-label="Fiyat grafiği" role="img"></canvas>
+      <div id="info-text" class="info-text"></div>
+    </div>
+  </div>
 </div>
 
 <script src="index.js"></script>
