@@ -1,39 +1,39 @@
 body {
-  background: #111;
+  background: #1a1a1a;
   color: white;
-  font-family: sans-serif;
+  font-family: Arial, sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  margin: 20px;
+}
+
+h1 {
+  margin-bottom: 10px;
+}
+
+#status {
+  margin-bottom: 5px;
 }
 
 canvas {
-  border: 2px solid white;
+  border: 1px solid #555;
   image-rendering: pixelated;
-  margin-bottom: 10px;
   cursor: crosshair;
+  margin-bottom: 10px;
 }
 
 #palette {
   display: grid;
   grid-template-columns: repeat(auto-fill, 24px);
   gap: 4px;
-  max-width: 300px;
-  margin-bottom: 10px;
 }
-
 .color {
   width: 24px;
   height: 24px;
-  border: 1px solid #666;
+  border: 1px solid #444;
   cursor: pointer;
 }
-
 .color.selected {
   border: 2px solid yellow;
-}
-
-#coord {
-  margin-bottom: 10px;
 }
