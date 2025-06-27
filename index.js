@@ -1,65 +1,51 @@
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 const palette = document.getElementById("palette");
-const coordDisplay = document.getElementById("coord");
+const curColorDisplay = document.getElementById("curColor");
 
 const gridSize = 10;
 const cols = canvas.width / gridSize;
 const rows = canvas.height / gridSize;
 
-const colors = [
-  "#000000", "#ffffff", "#ff0000", "#00ff00", "#0000ff",
-  "#ffff00", "#00ffff", "#ff00ff", "#888888", "#ffa500",
-  "#964B00", "#808000", "#008080", "#800080", "#c0c0c0"
-];
+const colors = ["#000000","#FFFFFF","#FF0000","#00FF00","#0000FF",
+                "#FFFF00","#FF00FF","#00FFFF","#888888","#FFA500",
+                "#964B00","#808000","#008080","#800080","#C0C0C0"];
 
 let selectedColor = colors[0];
+curColorDisplay.textContent = selectedColor;
 
-// Load saved pixels
-const pixelMap = JSON.parse(localStorage.getItem("pixelMap") || "[]");
-pixelMap.forEach(p => {
-  ctx.fillStyle = p.color;
-  ctx.fillRect(p.x * gridSize, p.y * gridSize, gridSize, gridSize);
-});
-
-// Palette setup
+// Paleti oluştur
 colors.forEach(color => {
-  const div = document.createElement("div");
-  div.className = "color";
-  div.style.backgroundColor = color;
-  div.onclick = () => {
+  const d = document.createElement("div");
+  d.className = "color";
+  d.style.backgroundColor = color;
+  d.onclick = () => {
     selectedColor = color;
-    document.querySelectorAll(".color").forEach(c => c.classList.remove("selected"));
-    div.classList.add("selected");
+    curColorDisplay.textContent = color;
+    document.querySelectorAll('.color').forEach(c=>c.classList.remove('selected'));
+    d.classList.add('selected');
   };
-  palette.appendChild(div);
+  palette.appendChild(d);
 });
-document.querySelector(".color").classList.add("selected");
+document.querySelector(".color").classList.add('selected');
 
-// Draw pixel
-canvas.addEventListener("click", e => {
+// Kaydedilmiş tuvali yükle
+const saved = JSON.parse(localStorage.getItem('rplace')||'{}');
+for (const key in saved) {
+  const [x,y] = key.split(',').map(Number);
+  ctx.fillStyle = saved[key];
+  ctx.fillRect(x*gridSize, y*gridSize, gridSize, gridSize);
+}
+
+// Tuval tıklama olayı
+canvas.addEventListener('click', e => {
   const rect = canvas.getBoundingClientRect();
-  const x = Math.floor((e.clientX - rect.left) / gridSize);
-  const y = Math.floor((e.clientY - rect.top) / gridSize);
+  const x = Math.floor((e.clientX-rect.left)/gridSize);
+  const y = Math.floor((e.clientY-rect.top)/gridSize);
 
   ctx.fillStyle = selectedColor;
-  ctx.fillRect(x * gridSize, y * gridSize, gridSize, gridSize);
+  ctx.fillRect(x*gridSize, y*gridSize, gridSize, gridSize);
 
-  savePixel(x, y, selectedColor);
+  saved[`${x},${y}`] = selectedColor;
+  localStorage.setItem('rplace', JSON.stringify(saved));
 });
-
-// Show coordinates
-canvas.addEventListener("mousemove", e => {
-  const rect = canvas.getBoundingClientRect();
-  const x = Math.floor((e.clientX - rect.left) / gridSize);
-  const y = Math.floor((e.clientY - rect.top) / gridSize);
-  coordDisplay.textContent = `X: ${x}, Y: ${y}`;
-});
-
-// Save pixel to localStorage
-function savePixel(x, y, color) {
-  let pixelMap = JSON.parse(localStorage.getItem("pixelMap") || "[]");
-  pixelMap = pixelMap.filter(p => !(p.x === x && p.y === y)); // overwrite
-  pixelMap.push({ x, y, color });
-  localStorage.setItem("pixelMap", JSON.stringify(pixelMap));
-}
