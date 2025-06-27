@@ -1,0 +1,39 @@
+body {
+  background: #111;
+  color: white;
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+canvas {
+  border: 2px solid white;
+  image-rendering: pixelated;
+  margin-bottom: 10px;
+  cursor: crosshair;
+}
+
+#palette {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 24px);
+  gap: 4px;
+  max-width: 300px;
+  margin-bottom: 10px;
+}
+
+.color {
+  width: 24px;
+  height: 24px;
+  border: 1px solid #666;
+  cursor: pointer;
+}
+
+.color.selected {
+  border: 2px solid yellow;
+}
+
+#coord {
+  margin-bottom: 10px;
+}
