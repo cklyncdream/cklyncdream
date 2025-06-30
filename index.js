@@ -1,51 +1,50 @@
-const canvas = document.getElementById("canvas");
-const ctx = canvas.getContext("2d");
-const palette = document.getElementById("palette");
-const curColorDisplay = document.getElementById("curColor");
+let user = {
+  name: "",
+  balance: 0,
+  btc: 0
+};
 
-const gridSize = 10;
-const cols = canvas.width / gridSize;
-const rows = canvas.height / gridSize;
+const btcRate = 50000; // 1 BTC = 50.000 TRYcoin
 
-const colors = ["#000000","#FFFFFF","#FF0000","#00FF00","#0000FF",
-                "#FFFF00","#FF00FF","#00FFFF","#888888","#FFA500",
-                "#964B00","#808000","#008080","#800080","#C0C0C0"];
+function createAccount() {
+  const nameInput = document.getElementById("username");
+  const name = nameInput.value.trim();
+  if (!name) return alert("Lütfen bir isim gir!");
 
-let selectedColor = colors[0];
-curColorDisplay.textContent = selectedColor;
+  user.name = name;
+  user.balance = 10000; // Başlangıç bakiyesi
+  user.btc = 0;
 
-// Paleti oluştur
-colors.forEach(color => {
-  const d = document.createElement("div");
-  d.className = "color";
-  d.style.backgroundColor = color;
-  d.onclick = () => {
-    selectedColor = color;
-    curColorDisplay.textContent = color;
-    document.querySelectorAll('.color').forEach(c=>c.classList.remove('selected'));
-    d.classList.add('selected');
-  };
-  palette.appendChild(d);
-});
-document.querySelector(".color").classList.add('selected');
-
-// Kaydedilmiş tuvali yükle
-const saved = JSON.parse(localStorage.getItem('rplace')||'{}');
-for (const key in saved) {
-  const [x,y] = key.split(',').map(Number);
-  ctx.fillStyle = saved[key];
-  ctx.fillRect(x*gridSize, y*gridSize, gridSize, gridSize);
+  document.getElementById("setup").style.display = "none";
+  document.getElementById("panel").style.display = "block";
+  document.getElementById("displayName").textContent = user.name;
+  updateUI();
 }
 
-// Tuval tıklama olayı
-canvas.addEventListener('click', e => {
-  const rect = canvas.getBoundingClientRect();
-  const x = Math.floor((e.clientX-rect.left)/gridSize);
-  const y = Math.floor((e.clientY-rect.top)/gridSize);
+function updateUI() {
+  document.getElementById("balance").textContent = user.balance.toFixed(2);
+  document.getElementById("btc").textContent = user.btc.toFixed(6);
+}
 
-  ctx.fillStyle = selectedColor;
-  ctx.fillRect(x*gridSize, y*gridSize, gridSize, gridSize);
+function buy() {
+  const amount = parseFloat(document.getElementById("amount").value);
+  if (isNaN(amount) || amount <= 0) return alert("Geçerli bir miktar gir!");
+  if (amount > user.balance) return alert("Yetersiz bakiye!");
 
-  saved[`${x},${y}`] = selectedColor;
-  localStorage.setItem('rplace', JSON.stringify(saved));
-});
+  const btcAmount = amount / btcRate;
+  user.balance -= amount;
+  user.btc += btcAmount;
+  updateUI();
+}
+
+function sell() {
+  const amount = parseFloat(document.getElementById("amount").value);
+  if (isNaN(amount) || amount <= 0) return alert("Geçerli bir miktar gir!");
+
+  const btcNeeded = amount / btcRate;
+  if (btcNeeded > user.btc) return alert("Yetersiz BTC!");
+
+  user.btc -= btcNeeded;
+  user.balance += amount;
+  updateUI();
+}
