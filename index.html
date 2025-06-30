@@ -1,16 +1,43 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>R/Place Klon</title>
+  <title>Borsa Simülasyonu</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>R/Place Klon</h1>
-  <div id="status">Seçili Renk: <span id="curColor">#000000</span></div>
-  <canvas id="canvas" width="800" height="800"></canvas>
-  <div id="palette"></div>
+  <div class="container">
+    <h1>💰 TRYcoin Borsa Paneli</h1>
+
+    <!-- Hesap Oluşturma -->
+    <div id="setup">
+      <input type="text" id="username" placeholder="Adınızı girin">
+      <button onclick="createAccount()">Hesap Oluştur</button>
+    </div>
+
+    <!-- Kullanıcı Paneli -->
+    <div id="panel" style="display:none;">
+      <h2>Hoş geldin, <span id="displayName"></span>!</h2>
+      <div class="balance">
+        <p><strong>Bakiyen:</strong> <span id="balance">0</span> TRYcoin</p>
+        <p><strong>BTC:</strong> <span id="btc">0</span></p>
+      </div>
+
+      <!-- Al-Sat Paneli -->
+      <div class="trade">
+        <h3>Al / Sat</h3>
+        <select id="currency">
+          <option value="BTC">Bitcoin</option>
+        </select>
+        <input type="number" id="amount" placeholder="Kaç TRYcoin?">
+        <button onclick="buy()">SATIN AL</button>
+        <button onclick="sell()">SAT</button>
+      </div>
+    </div>
+  </div>
+
   <script src="index.js"></script>
 </body>
 </html>
