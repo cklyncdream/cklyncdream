@@ -1,39 +1,33 @@
 body {
-  background: #1a1a1a;
-  color: white;
   font-family: Arial, sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 20px;
+  background: #f2f2f2;
+  padding: 30px;
 }
 
-h1 {
-  margin-bottom: 10px;
+.container {
+  background: white;
+  max-width: 500px;
+  margin: auto;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
 }
 
-#status {
-  margin-bottom: 5px;
+input, select, button {
+  margin: 5px 0;
+  padding: 10px;
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid #ccc;
 }
 
-canvas {
-  border: 1px solid #555;
-  image-rendering: pixelated;
-  cursor: crosshair;
-  margin-bottom: 10px;
-}
-
-#palette {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 24px);
-  gap: 4px;
-}
-.color {
-  width: 24px;
-  height: 24px;
-  border: 1px solid #444;
+button {
+  background-color: #28a745;
+  color: white;
+  font-weight: bold;
   cursor: pointer;
 }
-.color.selected {
-  border: 2px solid yellow;
+
+button:hover {
+  background-color: #218838;
 }
